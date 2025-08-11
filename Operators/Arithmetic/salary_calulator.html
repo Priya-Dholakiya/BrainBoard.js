@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Salary Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+            max-width: 800px;
+            width: 100%;
+            display: flex;
+            gap: 40px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .row {
+            display: flex;
+            gap: 20px;
+        }
+        .row > div {
+            flex: 1;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        .output {
+            background: #f9fafb;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+        }
+        .big-total {
+            font-size: 22px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Input Section -->
+    <div style="flex:1;">
+        <h2>Salary Calculator</h2>
+
+        <!-- First row (Age & Years) -->
+        <div class="row">
+            <div>
+                <label>Age:</label>
+                <input type="number" id="age">
+            </div>
+            <div>
+                <label>Years of Working:</label>
+                <input type="number" id="years">
+            </div>
+        </div>
+
+        <!-- Job field alone -->
+        <div>
+            <label>Job:</label>
+            <input type="text" id="job">
+        </div>
+
+        <!-- Hours & Workdays -->
+        <div class="row">
+            <div>
+                <label>Hours per Day:</label>
+                <input type="number" id="hours">
+            </div>
+            <div>
+                <label>Workdays per Week:</label>
+                <input type="number" id="days">
+            </div>
+        </div>
+
+        <!-- Net Salary & Calculation Type -->
+        <div class="row">
+            <div>
+                <label>Net Salary ($):</label>
+                <input type="number" id="salary">
+            </div>
+            <div>
+                <label>Calculation Type:</label>
+                <select id="type">
+                    <option value="monthly">Monthly</option>
+                    <option value="yearly">Yearly</option>
+                </select>
+            </div>
+        </div>
+
+        <button onclick="calculate()">Create Salary Overview</button>
+    </div>
+
+    <!-- Output Section -->
+    <div style="flex:1;">
+        <div class="output">
+            <p>On your job as <span id="outJob">---</span>, this is your salary overview:</p>
+            <p>Hourly: $<span id="hourly">0</span></p>
+            <p>Daily: $<span id="daily">0</span></p>
+            <p>Monthly: $<span id="monthly">0</span></p>
+            <p>Yearly: $<span id="yearly">0</span></p>
+            <p class="big-total">For <span id="outYears">0</span> years working, your total salary is: $<span id="total">0</span></p>
+        </div>
+    </div>
+</div>
+
+<script>
+function calculate() {
+    var age = Number(document.getElementById('age').value);
+    var years = Number(document.getElementById('years').value);
+    var job = document.getElementById('job').value;
+    var hours = Number(document.getElementById('hours').value);
+    var days = Number(document.getElementById('days').value);
+    var salary = Number(document.getElementById('salary').value);
+    var type = document.getElementById('type').value;
+
+    var monthly, yearly;
+
+    if (type === "monthly") {
+        monthly = salary;
+        yearly = salary * 12;
+    } else {
+        yearly = salary;
+        monthly = salary / 12;
+    }
+
+    var daily = yearly / (days * 52);
+    var hourly = daily / hours;
+    var total = yearly * years;
+
+    document.getElementById('outJob').innerText = job;
+    document.getElementById('hourly').innerText = hourly.toFixed(2);
+    document.getElementById('daily').innerText = daily.toFixed(2);
+    document.getElementById('monthly').innerText = monthly.toFixed(2);
+    document.getElementById('yearly').innerText = yearly.toFixed(2);
+    document.getElementById('outYears').innerText = years;
+    document.getElementById('total').innerText = total.toFixed(2);
+}
+</script>
+
+</body>
+</html>
