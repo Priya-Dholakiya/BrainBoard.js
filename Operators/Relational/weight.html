@@ -1,0 +1,14 @@
+Enter Your Weight : <input type="number" id="Height"><br /><br />
+<input type="button" value="Check" onclick="return Check()"><br /><br />
+<h1 id="Result"></h1>
+
+<script>
+      function Check() {
+            var a = Number(document.getElementById("Height").value);
+            if (a < 100) {
+                  document.getElementById("Result").innerHTML = "You are Underweight";
+            } else {
+                  document.getElementById("Result").innerHTML = "You are Overweight";
+            }
+      }
+</script>

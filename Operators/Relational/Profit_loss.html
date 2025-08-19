@@ -1,0 +1,23 @@
+Enter Real Cost : <input type="number" id="cost"><br /><br />
+Enter Selling Price : <input type="number" id="sellingPrice"><br /><br />
+<input type="submit" value="Calculate Profit/Loss" onclick="return CalculateProfitLoss()">
+<h1 id="result"></h1>
+
+<script>
+      function CalculateProfitLoss() {
+          var cost = Number(document.getElementById("cost").value);
+          var sellingPrice = Number(document.getElementById("sellingPrice").value);
+          var profitLoss = 0;
+          if (sellingPrice > cost) {
+              profitLoss = sellingPrice - cost;
+              resultMessage = "Profit: ₹" + profitLoss;
+          } else if (sellingPrice < cost) {
+              profitLoss = cost - sellingPrice;
+              resultMessage = "Loss: ₹" + profitLoss;
+          } else {
+              resultMessage = "No Profit, No Loss";
+          }
+
+          document.getElementById("result").innerHTML = resultMessage;
+      }
+</script>

@@ -1,0 +1,15 @@
+Enter Any Number : <input type="Number" id="number">
+<input type="button" value="Check" onclick="return CheckNumber()">
+<h1 id="Result"></h1>
+
+<script>
+      function CheckNumber() {
+            var a = Number(document.getElementById("number").value);
+            if (a % 2 == 0) {
+                  document.getElementById("Result").innerHTML = "Number is Even";
+            }
+            else {
+                  document.getElementById("Result").innerHTML = "Number is Odd";
+            }
+      }
+</script>

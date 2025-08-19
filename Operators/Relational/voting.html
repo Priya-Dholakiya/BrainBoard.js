@@ -1,0 +1,14 @@
+Enter Your Age : <input type="number" id="age"><br/><br/>
+<input type="button" value="Check" onclick="return VoteCheck()"> 
+<h1 id="Result"></h1>
+
+<script>
+      function VoteCheck(){
+            var a = Number(document.getElementById("age").value);
+            if(a>=18){
+                  document.getElementById('Result').innerHTML = 'You are eligible for voting';
+            }else{
+                  document.getElementById('Result').innerHTML = 'You are not eligible for voting';
+            }
+      }
+</script>

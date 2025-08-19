@@ -1,0 +1,22 @@
+Enter The First Number: <input type="number" id="num1"><br><br>
+Enter The Second Number: <input type="number" id="num2"><br><br><br/>
+<input type="submit" value="Compare Numbers" onclick="compareNumbers()">
+<h1 id="comparisonResult"></h1>
+
+<script>
+    function compareNumbers() {
+        var num1 = Number(document.getElementById("num1").value);
+        var num2 = Number(document.getElementById("num2").value);
+        var result = 0;
+
+        if (num1 > num2) {
+            result = num1 + " is greater than " + num2;
+        } else if (num1 < num2) {
+            result = num1 + " is less than " + num2;
+        } else {
+            result = num1 + " is equal to " + num2;
+        }
+
+        document.getElementById("comparisonResult").innerHTML = result;
+    }
+</script>

@@ -1,0 +1,29 @@
+Enter Your Height (Inch) : <input type="number" id="Height"><br /><br />
+<input type="button" value="Check" onclick="return Check()"><br /><br />
+<h1 id="Result"></h1>
+
+<script>
+      function Check() {
+            var a = Number(document.getElementById('Height').value);
+            if (a < 150 && a > 0) {
+                  document.getElementById('Result').innerHTML = "Your Height Is Small...";
+            } else {
+                  if (a >= 150 && a <= 250) {
+                        document.getElementById('Result').innerHTML = "Your Height Is Big...";
+                  } else {
+                        document.getElementById('Result').innerHTML = "Invalid Value...";
+                  }
+            }
+      }
+</script>
+
+<script>
+      function Check() {
+            var a = Number(document.getElementById('Height').value);
+            var height = 150;
+
+            if (a > height) {
+                  document.getElementById('Result');
+            }
+      }
+</script>
