@@ -1,0 +1,25 @@
+Enter Your Marks In Percentage : <input type="number" id="marks"><br/><br/>
+<input type="button" value="Find Grade" onclick="GradeFinder()"> 
+<h1 id="Result"></h1>
+
+<script>
+function GradeFinder(){
+    var a = Number(document.getElementById("marks").value);
+
+    if(a >= 90){
+        document.getElementById("Result").innerHTML = "Your Grade Is A+";
+    }
+    else if(a >= 80){
+        document.getElementById("Result").innerHTML = "Your Grade Is A";
+    }
+    else if(a >= 70){
+        document.getElementById("Result").innerHTML = "Your Grade Is B";
+    }
+    else if(a >= 60){
+        document.getElementById("Result").innerHTML = "Your Grade Is C";
+    }
+    else{
+        document.getElementById("Result").innerHTML = "You Are Failed";
+    }
+}
+</script>

@@ -1,0 +1,76 @@
+<div
+      style="max-width:420px; margin:30px auto; padding:20px; border:1px solid #ccc; border-radius:12px; box-shadow:0 4px 8px rgba(0,0,0,0.15); background:#fdfdfd; font-family:Arial; text-align:center;">
+
+      <h2 style="color:#444; margin-bottom:15px;">Area Calculator</h2>
+
+      <label style="font-weight:bold;">Select Shape:</label>
+      <select id="Choice" onchange="showInputs()"
+            style="padding:10px; width:100%; margin:12px 0; border-radius:8px; border:1px solid #aaa;">
+            <option value="">---Select Choice---</option>
+            <option value="1">Circle</option>
+            <option value="2">Rectangle</option>
+            <option value="3">Triangle</option>
+            <option value="4">Square</option>
+      </select>
+
+      <div id="inputs" style="margin-top:10px;"></div>
+
+      <button onclick="calculateArea()" id="calcBtn"
+            style="padding:12px 20px; margin-top:12px; width:100%; background:#007bff; color:white; border:none; border-radius:8px; cursor:pointer; font-size:16px; display:none;">Calculate
+            Area</button>
+
+      <p id="result" style="margin-top:20px; font-size:18px; color:#222;"></p>
+</div>
+
+<script>
+      let choice = "";
+
+      function showInputs() {
+            choice = document.getElementById("Choice").value;
+            let inputsDiv = document.getElementById("inputs");
+            let btn = document.getElementById("calcBtn");
+            inputsDiv.innerHTML = "";
+            btn.style.display = "none";
+
+            if (choice == "1") {
+                  inputsDiv.innerHTML = '<input type="number" id="radius" placeholder="Enter Radius" style="padding:10px; width:95%; border-radius:8px; border:1px solid #aaa;">';
+                  btn.style.display = "block";
+            }
+            else if (choice == "2") {
+                  inputsDiv.innerHTML = '<input type="number" id="length" placeholder="Enter Length" style="padding:10px; width:95%; border-radius:8px; border:1px solid #aaa; margin-bottom:10px;"><br><input type="number" id="breadth" placeholder="Enter Breadth" style="padding:10px; width:95%; border-radius:8px; border:1px solid #aaa;">';
+                  btn.style.display = "block";
+            }
+            else if (choice == "3") {
+                  inputsDiv.innerHTML = '<input type="number" id="base" placeholder="Enter Base" style="padding:10px; width:95%; border-radius:8px; border:1px solid #aaa; margin-bottom:10px;"><br><input type="number" id="height" placeholder="Enter Height" style="padding:10px; width:95%; border-radius:8px; border:1px solid #aaa;">';
+                  btn.style.display = "block";
+            }
+            else if (choice == "4") {
+                  inputsDiv.innerHTML = '<input type="number" id="side" placeholder="Enter Side" style="padding:10px; width:95%; border-radius:8px; border:1px solid #aaa;">';
+                  btn.style.display = "block";
+            }
+      }
+
+      function calculateArea() {
+            let area = 0;
+            if (choice == "1") {
+                  let r = parseFloat(document.getElementById("radius").value);
+                  area = 3.14 * r * r;
+            }
+            else if (choice == "2") {
+                  let l = parseFloat(document.getElementById("length").value);
+                  let b = parseFloat(document.getElementById("breadth").value);
+                  area = l * b;
+            }
+            else if (choice == "3") {
+                  let base = parseFloat(document.getElementById("base").value);
+                  let h = parseFloat(document.getElementById("height").value);
+                  area = 0.5 * base * h;
+            }
+            else if (choice == "4") {
+                  let side = parseFloat(document.getElementById("side").value);
+                  area = side * side;
+            }
+
+            document.getElementById("result").innerHTML = "<b>Area:</b> " + area.toFixed(2);
+      }
+</script>

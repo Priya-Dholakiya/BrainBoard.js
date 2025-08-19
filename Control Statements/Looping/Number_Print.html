@@ -1,0 +1,17 @@
+Enter Start Point : <input type="number" id="start"><br/><br/>
+Enter End Point : <input type="number" id="end"><br/><br/>
+Enter Gap : <input type="number" id="gap"><br/><br/>
+<input type="button" value="Submit" onclick="return NumberPrint()">
+<h1 id="result"></h1>
+
+<script>
+      function NumberPrint() {
+            var start = Number(document.getElementById('start').value);
+            var end = Number(document.getElementById('end').value);
+            var gap = Number(document.getElementById('gap').value);
+            while (start <= end) {
+                  document.getElementById('result').innerHTML += start + " ";
+                  start+= gap;
+            }
+      }
+</script>

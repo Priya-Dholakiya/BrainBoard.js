@@ -1,0 +1,40 @@
+<div
+      style="max-width:350px; margin:20px auto; padding:20px; border:1px solid #ccc; border-radius:12px; box-shadow:0 4px 8px rgba(0,0,0,0.1); background:#f9f9f9; font-family:Arial; text-align:center;">
+
+      <h2 style="color:#333;">Simple Calculator</h2>
+
+      <label style="font-weight:bold;">Enter Your Choice:</label>
+      <select id="Choice"
+            style="padding:10px; width:100%; border:1px solid #aaa; border-radius:8px; margin:8px 0 15px 0;">
+            <option value="">---Select Choice---</option>
+            <option value="1">Addition</option>
+            <option value="2">Subtraction</option>
+            <option value="3">Multiplication</option>
+            <option value="4">Division</option>
+      </select>
+
+      <input type="number" id="num1" placeholder="Enter Number 1"
+            style="padding:10px; width:95%; border:1px solid #aaa; border-radius:8px; margin-bottom:12px;">
+      <input type="number" id="num2" placeholder="Enter Number 2"
+            style="padding:10px; width:95%; border:1px solid #aaa; border-radius:8px; margin-bottom:15px;">
+
+      <button onclick="calculateBill()"
+            style="padding:12px 20px; width:100%; background:#007bff; color:white; border:none; border-radius:8px; cursor:pointer; font-size:16px;">Calculate</button>
+
+      <p style="margin-top:20px; font-size:18px; color:#222;">Result: <span id="result"></span></p>
+</div>
+
+<script>
+      function calculateBill() {
+            var ch = Number(document.getElementById('Choice').value);
+            var a = Number(document.getElementById('num1').value);
+            var b = Number(document.getElementById('num2').value);
+            var c;
+            if (ch == 1) c = a + b;
+            else if (ch == 2) c = a - b;
+            else if (ch == 3) c = a * b;
+            else if (ch == 4) c = b !== 0 ? (a / b) : "Cannot divide by zero";
+            else c = "Invalid Operation";
+            document.getElementById('result').innerHTML = c;
+      }
+</script>

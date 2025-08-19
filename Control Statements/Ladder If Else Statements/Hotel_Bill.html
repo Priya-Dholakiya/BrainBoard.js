@@ -1,0 +1,57 @@
+<div style="max-width:400px;margin:20px auto;padding:20px;border:1px solid #ccc;border-radius:12px;box-shadow:0 4px 8px rgba(0,0,0,0.1);background:#f9f9f9;font-family:Arial;">
+  <h2 style="text-align:center;color:#333;">Food Bill Calculator</h2>
+
+  <label>Select Item:</label>
+  <select id="food" style="width:100%;padding:8px;margin:8px 0;">
+    <option value="">--Choose--</option>
+    <option value="100">Burger (₹100)</option>
+    <option value="150">Frankie (₹150)</option>
+    <option value="200">Cold Coffee (₹200)</option>
+    <option value="120">Sandwich (₹120)</option>
+    <option value="250">Pizza (₹250)</option>
+  </select>
+
+  <label>Quantity:</label>
+  <input type="number" id="qty" value="1" style="width:80px;padding:5px;margin:5px 0;">
+
+  <button onclick="addItem()" style="margin:10px 0;padding:8px 12px;background:#28a745;color:white;border:none;border-radius:5px;cursor:pointer;">Add to Cart</button>
+
+  <ul id="cart" style="margin:10px 0;padding:0;list-style:none;color:#333;"></ul>
+
+  <label>Tip Amount (₹):</label>
+  <input type="number" id="tip" value="0" style="width:80px;padding:5px;margin:5px 0;">
+
+  <label>No. of Persons:</label>
+  <input type="number" id="persons" value="1" style="width:80px;padding:5px;margin:5px 0;">
+
+  <button onclick="calc()" style="margin-top:10px;padding:10px;width:100%;background:#007bff;color:white;border:none;border-radius:8px;cursor:pointer;">Calculate Bill</button>
+
+  <h3 id="result" style="margin-top:15px;text-align:center;color:#222;"></h3>
+</div>
+
+<script>
+var cart = [];
+
+function addItem(){
+  var food=document.getElementById("food");
+  var price = +food.value;
+  var name = food.options[food.selectedIndex].text;
+  var qty = +document.getElementById("qty").value;
+
+  if(price && qty>0){
+    cart.push({name, price, qty});
+    showCart();
+  }
+}
+
+function showCart(){
+  document.getElementById("cart").innerHTML = "";
+}
+
+function calc(){
+  var total = +document.getElementById("tip").value;
+  cart.forEach(function(c){ total += c.price * c.qty; });
+  document.getElementById("result").innerHTML = 
+    "Total Bill: ₹" + total + "<br>Per Person: ₹" + (total / +document.getElementById("persons").value).toFixed(2);
+}
+</script>

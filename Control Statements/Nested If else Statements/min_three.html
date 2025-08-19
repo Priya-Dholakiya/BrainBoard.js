@@ -1,0 +1,27 @@
+Enter First Number : <input id="a" type="number"><br /><br />
+Enter Secound Number : <input id="b" type="number"><br /><br />
+Enter Third Number : <input id="c" type="number"><br /><br />
+<input type="button" value="Check" onclick="return MaxNumber()">
+<h1 id="Result"></h1>
+
+<script>
+      function MaxNumber() {
+            var a = Number(document.getElementById("a").value);
+            var b = Number(document.getElementById("b").value);
+            var c = Number(document.getElementById("c").value);
+
+            if (a < b) {
+                  if (a < c) {
+                        document.getElementById("Result").innerHTML = "A is Small";
+                  } else {
+                        document.getElementById("Result").innerHTML = " C is Small";
+                  }
+            } else {
+                  if (b < c) {
+                        document.getElementById("Result").innerHTML = "B is Small";
+                  } else {
+                        document.getElementById("Result").innerHTML = "C is Small";
+                  }
+            }
+      }
+</script>

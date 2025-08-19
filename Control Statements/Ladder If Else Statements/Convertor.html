@@ -1,0 +1,47 @@
+<div style="max-width:400px; margin:30px auto; padding:20px; border:1px solid #ccc; border-radius:12px; box-shadow:0 4px 8px rgba(0,0,0,0.15); background:#fafafa; font-family:Arial; text-align:center;">
+  
+  <h2 style="margin-bottom:15px; color:#333;">Unit Converter</h2>
+
+  <label style="font-weight:bold;">Enter Your Choice:</label>
+  <select id="Choice" style="padding:10px; width:100%; border:1px solid #aaa; border-radius:8px; margin:12px 0;" onchange="CheckChoice()">
+    <option value="">---Select Choice---</option>
+    <option value="1">Celsius to Fahrenheit</option>
+    <option value="2">Fahrenheit to Celsius</option>
+    <option value="3">Celsius to Kelvin</option>
+    <option value="4">Meter to Kilometer</option>
+  </select>
+
+  <input type="number" id="inputValue" placeholder="Enter value here" style="padding:10px; width:95%; border:1px solid #aaa; border-radius:8px; margin-bottom:15px; display:none;">
+
+  <button onclick="convertValue()" id="convertBtn" style="padding:12px 20px; width:100%; background:#28a745; color:white; border:none; border-radius:8px; cursor:pointer; font-size:16px; display:none;">Convert</button>
+
+  <p id="result" style="margin-top:20px; font-size:18px; color:#222;"></p>
+</div>
+
+<script>
+  let selectedChoice = "";
+
+  function CheckChoice() {
+    selectedChoice = document.getElementById("Choice").value;
+    if(selectedChoice) {
+      document.getElementById("inputValue").style.display = "block";
+      document.getElementById("convertBtn").style.display = "block";
+      document.getElementById("result").innerHTML = "";
+    } else {
+      document.getElementById("inputValue").style.display = "none";
+      document.getElementById("convertBtn").style.display = "none";
+    }
+  }
+
+  function convertValue() {
+    let input = parseFloat(document.getElementById("inputValue").value);
+    let result = "";
+
+    if (selectedChoice == 1) result = input + "°C = " + ((input * 9/5) + 32).toFixed(2) + "°F";
+    else if (selectedChoice == 2) result = input + "°F = " + ((input - 32) * 5/9).toFixed(2) + "°C";
+    else if (selectedChoice == 3) result = input + "°C = " + (input + 273.15).toFixed(2) + " K";
+    else if (selectedChoice == 4) result = input + " m = " + (input / 1000).toFixed(3) + " km";
+
+    document.getElementById("result").innerHTML = "<b>Result:</b> " + result;
+  }
+</script>

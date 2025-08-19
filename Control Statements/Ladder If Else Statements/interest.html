@@ -1,0 +1,27 @@
+Enter Your Sallery Amount : <input type="number" id="sallery"><br /><br />
+Enter Your Working Days : <input type="number" id="days"><br /><br />
+<input type="submit" value="Calculate Interest" onclick="return Calculate()">
+<h1 id="Result"></h1>
+
+<script>
+      function Calculate() {
+            var sallery = Number(document.getElementById("sallery").value);
+            var days = Number(document.getElementById("days").value);
+            var interest = 0;
+            if (days >= 30) {
+                  interest = sallery * 0.1;
+                  document.getElementById("Result").innerHTML = "Your Interest is: " + interest;
+            }
+            else if(days >= 20) {
+                  interest = sallery * 0.05;
+                  document.getElementById("Result").innerHTML = "Your Interest is: " + interest;
+            }
+            else if (days >= 10) {
+                  interest = sallery * 0.02;
+                  document.getElementById("Result").innerHTML = "Your Interest is: " + interest;
+            } else {
+                  interest = 0;
+                  document.getElementById("Result").innerHTML = "Your Interest is: " + interest;
+            }
+      }
+</script>

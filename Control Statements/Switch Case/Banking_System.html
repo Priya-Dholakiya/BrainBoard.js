@@ -1,0 +1,53 @@
+<h2 style="font-family:Arial; color:#333; text-align:center;">Select Account Type</h2>
+
+<div
+      style="max-width:350px; margin:20px auto; padding:20px; border:1px solid #ccc; border-radius:12px; box-shadow:0 4px 8px rgba(0,0,0,0.1); text-align:center; background:#f9f9f9;">
+      <select id="accountType" onchange="checkAccountType()"
+            style="padding:10px; width:100%; border:1px solid #aaa; border-radius:8px; margin-bottom:15px;">
+            <option value="">---Select Account Type---</option>
+            <option value="1">Savings Account</option>
+            <option value="2">Current Account</option>
+      </select>
+
+      <div id="accountDetails" style="margin:10px 0; font-weight:bold; color:#444;"></div>
+
+      <div id="transactionSection" style="display:none; margin-top:15px;">
+            <input type="number" id="amount" placeholder="Enter amount"
+                  style="padding:10px; width:95%; border:1px solid #aaa; border-radius:8px; margin-bottom:10px;">
+            <div>
+                  <button onclick="deposit()"
+                        style="padding:10px 20px; margin:5px; background:#28a745; color:white; border:none; border-radius:8px; cursor:pointer;">Deposit</button>
+                  <button onclick="withdraw()"
+                        style="padding:10px 20px; margin:5px; background:#dc3545; color:white; border:none; border-radius:8px; cursor:pointer;">Withdraw</button>
+            </div>
+            <p id="balanceDisplay" style="margin-top:15px; font-size:16px; font-weight:bold; color:#222;"></p>
+      </div>
+</div>
+
+<script>
+      let currentBalance = 0, selectedAccount = "";
+      function checkAccountType() {
+            selectedAccount = document.getElementById("accountType").value;
+            let accountDetails = document.getElementById("accountDetails");
+            let transactionSection = document.getElementById("transactionSection");
+            switch (selectedAccount) {
+                  case "1": currentBalance = 0; accountDetails.innerHTML = "Savings Account selected."; transactionSection.style.display = "block"; break;
+                  case "2": currentBalance = 10000; accountDetails.innerHTML = "Current Account selected."; transactionSection.style.display = "block"; break;
+                  default: accountDetails.innerHTML = "Please select an account type."; transactionSection.style.display = "none";
+            }
+            updateBalance();
+      }
+      function deposit() {
+            let amount = Number(document.getElementById("amount").value);
+            if (amount > 0) { currentBalance += amount; updateBalance(); }
+            else alert("Enter valid amount to deposit!");
+      }
+      function withdraw() {
+            let amount = Number(document.getElementById("amount").value);
+            if (amount > 0 && amount <= currentBalance) { currentBalance -= amount; updateBalance(); }
+            else alert("Insufficient balance or invalid amount!");
+      }
+      function updateBalance() {
+            document.getElementById("balanceDisplay").innerHTML = "Current Balance: " + currentBalance;
+      }
+</script>
