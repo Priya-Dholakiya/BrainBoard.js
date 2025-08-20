@@ -42,10 +42,8 @@
       document.getElementById("tipPerPerson").innerText = tipPerPerson;
       document.getElementById("totalPerPerson").innerText = totalPerPerson;
       document.getElementById("totalBill").innerText = totalBill;
-
       document.getElementById("resultBox").style.display = "block";
     }
-
     function resetForm() {
       document.getElementById("bill").value = "";
       document.getElementById("tipPercent").value = "";
@@ -53,6 +51,5 @@
       document.getElementById("resultBox").style.display = "none";
     }
   </script>
-
 </body>
 </html>
