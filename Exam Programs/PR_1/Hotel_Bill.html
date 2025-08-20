@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Food Bill</title>
+</head>
+<body style="font-family: Arial, sans-serif; background: #eef2f7; display:flex; justify-content:center; align-items:center; height:100vh; margin:0;">
+
+  <!-- Card -->
+  <div style="background:white; padding:25px 35px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.1); width:380px; text-align:center;">
+    
+    <h2 style="color:#2e8b57; margin-bottom:20px;">🍔 Food Bill Generator</h2>
+
+    <!-- Food select -->
+    <label style="font-weight:bold; display:block; text-align:left;">Choose Food:</label>
+    <select id="food" style="padding:8px; margin:8px 0 15px 0; border:1px solid #ccc; border-radius:6px; width:100%;">
+      <option value="">-- Select --</option>
+      <option>Burger</option>
+      <option>Pizza</option>
+      <option>Sandwich</option>
+    </select>
+
+    <!-- Quantity -->
+    <label style="font-weight:bold; display:block; text-align:left;">Quantity:</label>
+    <input type="number" id="qty" value="1" min="1" style="width:100%; padding:8px; margin:8px 0 15px 0; border:1px solid #ccc; border-radius:6px;"><br>
+
+    <!-- Add to cart button -->
+    <button onclick="addItem()" style="padding:10px; width:100%; background:#007bff; color:white; border:none; border-radius:6px; margin-bottom:15px; font-weight:bold; cursor:pointer;">
+      ➕ Add to Cart
+    </button>
+
+    <!-- Cart items -->
+    <h3 style="text-align:left; color:#444;">🛒 Your Cart:</h3>
+    <div id="cart" style="text-align:left; font-weight:bold; color:#333; margin-bottom:15px;"></div>
+
+    <!-- Tip select -->
+    <label style="font-weight:bold; display:block; text-align:left;">Tip:</label>
+    <select id="tip" style="padding:8px; margin:8px 0 20px 0; border:1px solid #ccc; border-radius:6px; width:100%;">
+      <option value="0">No Tip</option>
+      <option value="10">₹10</option>
+      <option value="20">₹20</option>
+      <option value="50">₹50</option>
+    </select><br>
+
+    <button onclick="generateBill()" style="padding:12px; width:100%; background:#28a745; color:white; border:none; border-radius:6px; font-weight:bold; cursor:pointer;">
+      💰 Generate Bill
+    </button>
+
+    <h3 id="output" style="color:#d63333; margin-top:20px; white-space:pre-line;"></h3>
+  </div>
+
+  <script>
+    var cart = [];
+
+    function addItem() {
+      var food = document.getElementById("food").value;
+      var qty = Number(document.getElementById("qty").value);
+
+      if(food === "" || qty <= 0){
+        alert("⚠️ Please select valid food & quantity!");
+        return;
+      }
+
+      var price = 0;
+      if(food === "Burger"){ price = 100; }
+      else if(food === "Pizza"){ price = 150; }
+      else if(food === "Sandwich"){ price = 50; }
+
+      cart.push({ name: food, price: price, qty: qty });
+
+      showCart();
+    }
+
+    function showCart(){
+      var text = "";
+      for(var i=0; i<cart.length; i++){
+        text += cart[i].name + " x " + cart[i].qty + " = ₹" + (cart[i].price * cart[i].qty) + "<br>";
+      }
+      document.getElementById("cart").innerHTML = text;
+    }
+    function generateBill(){
+      if(cart.length === 0){
+        document.getElementById("output").innerText = "⚠️ Cart is empty! Please add food items.";
+        return;
+      }
+
+      var tip = +document.getElementById("tip").value;
+      var total = 0;
+
+      for(var i=0; i<cart.length; i++){
+        total += cart[i].price * cart[i].qty;
+      }
+      total += tip;
+
+      document.getElementById("output").innerText = "💵 Total Bill = ₹" + total + " (Including Tip ₹" + tip + ")";
+    }
+  </script>
+</body>
+</html>
