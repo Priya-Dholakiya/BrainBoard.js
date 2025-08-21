@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Electricity Bill Calculator</title>
+</head>
+<body style="font-family:Arial, sans-serif; background:#f0f8ff; text-align:center; margin-top:50px;">
+    <h1 style="color:#2c3e50; background:#aee1f9; padding:10px; border-radius:10px; width:60%; margin:auto;">
+        ⚡ Electricity Bill Calculator ⚡
+    </h1><br>
+    <label for="units" style="font-size:18px; color:#34495e;">Enter Units: </label>
+    <input type="number" id="units" 
+           style="padding:8px; font-size:16px; border:2px solid #3498db; border-radius:5px;"><br><br>
+    <input type="submit" value="Calculate Bill" onclick="calcBill()" 
+           style="padding:10px 20px; background:#3498db; color:white; border:none; border-radius:5px; cursor:pointer; font-size:16px;">
+    <br><br>
+    <h3 id="bill" style="color:#e74c3c; font-size:22px;"></h3>
+    <script>
+        function calcBill(){
+            var units = Number(document.getElementById("units").value);
+            var bill = 0;
+            if(units > 0 && units <= 100){
+                bill = units * 5;
+            } 
+            else if(units > 100 && units <= 200){
+                bill = (100 * 5) + ((units - 100) * 7);
+            } 
+            else if(units > 200){
+                bill = (100 * 5) + (100 * 7) + ((units - 200) * 10);
+            }
+            else{
+                bill = "❌ Please enter valid units!";
+            }
+            document.getElementById("bill").innerHTML = "Total Bill: ₹ " + bill;
+        }
+    </script>
+</body>
+</html>
